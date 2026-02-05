@@ -1,33 +1,43 @@
 ﻿const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
 
-// Hàm để tính toán vị trí ngẫu nhiên
-const moveButton = () => {
-    // Trừ đi kích thước nút để nó không nhảy ra ngoài màn hình
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+// Biến để theo dõi độ phóng to
+let scale = 1;
 
+// Hàm để nút No nhảy đi chỗ khác
+const moveButton = () => {
+    // Tính toán vị trí ngẫu nhiên trong khung nhìn
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20); // Trừ thêm chút lề để không sát mép quá
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
+    
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
 };
 
-// Hiệu ứng nút No "chạy trốn"
-noBtn.addEventListener('mouseover', moveButton);
+// --- THAY ĐỔI CHÍNH Ở ĐÂY ---
+// Sự kiện khi ĐƯA CHUỘT VÀO (mouseover) nút No
+noBtn.addEventListener('mouseover', () => {
+    // 1. Nút No chạy ngay lập tức
+    moveButton();
 
-// Hiệu ứng nút Yes to dần khi bấm No
-let scale = 1;
-noBtn.addEventListener('click', () => {
-    scale += 0.5;
+    // 2. Nút Yes to lên ngay lập tức
+    scale += 0.2; // Mỗi lần đưa chuột vào tăng thêm 20% kích thước
     yesBtn.style.transform = `scale(${scale})`;
-    alert("Nỗ lực tuyệt vời, nhưng hãy chọn Yes đi nào! 😉");
 });
 
-// Chúc mừng khi bấm Yes
+// Sự kiện khi bấm vào nút Yes (Hiện thông báo chúc mừng)
 yesBtn.addEventListener('click', () => {
     document.body.innerHTML = `
-        <div style="text-align:center;">
-            <h1 style="color:#d32f2f; font-size: 3rem;">I knew you would say Yes! ❤️</h1>
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXp1eXp1eXp1eXp1eXp1eXp1eXp1eXp1eXp1eXp1&ep=v1_gifs_search&rid=giphy.gif&ct=s" style="width:300px;">
+        <div style="text-align:center; position: relative; z-index: 10;">
+            <h1 style="color:#d32f2f; font-size: 3rem;">Yayy! I knew it! ❤️</h1>
+            <img src="https://www.pinterest.com/pin/296463587970844309/" style="width:300px;">
         </div>
     `;
+    // Thêm hiệu ứng nền tim bay tung tóe nếu muốn (cần thêm CSS/JS phức tạp hơn)
+});
+
+// (Tùy chọn) Chặn sự kiện click vào nút No nếu họ dùng mẹo để bấm
+noBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // Ngăn chặn hành động click
+    alert("Đã bảo là sẽ rất buồn mà... Chọn Yes đi! 🥺");
 });
