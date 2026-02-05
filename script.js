@@ -27,13 +27,14 @@ noBtn.addEventListener('mouseover', () => {
 
 // Sự kiện khi bấm vào nút Yes (Hiện thông báo chúc mừng)
 yesBtn.addEventListener('click', () => {
-    document.body.innerHTML = `
-        <div style="text-align:center; position: relative; z-index: 10;">
-            <h1 style="color:#d32f2f; font-size: 3rem;">Yayy! I knew it! ❤️</h1>
-            <img src="cute_cat.gif" alt="Cute Capoo Cat" class="cat-img">
-        </div>
-    `;
-    // Thêm hiệu ứng nền tim bay tung tóe nếu muốn (cần thêm CSS/JS phức tạp hơn)
+    // Thay đổi ảnh sang bugcat-cat.gif
+    mainImage.src = 'bugcat-cat.gif'; 
+
+    // Đổi tiêu đề câu hỏi thành lời chúc mừng
+    document.querySelector('h1').innerText = "Yayy! Toi biet ma ehehehehe! ❤️";
+
+    // Ẩn các nút bấm đi sau khi đã thành công
+    document.querySelector('.buttons').style.display = 'none';
 });
 
 // (Tùy chọn) Chặn sự kiện click vào nút No nếu họ dùng mẹo để bấm
