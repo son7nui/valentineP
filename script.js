@@ -30,7 +30,7 @@ yesBtn.addEventListener('click', () => {
     document.body.innerHTML = `
         <div style="text-align:center; position: relative; z-index: 10;">
             <h1 style="color:#d32f2f; font-size: 3rem;">Yayy! I knew it! ❤️</h1>
-            <img src="https://www.pinterest.com/pin/296463587970844309/" style="width:300px;">
+            <img src="cute_cat.gif" alt="Cute Capoo Cat" class="cat-img">
         </div>
     `;
     // Thêm hiệu ứng nền tim bay tung tóe nếu muốn (cần thêm CSS/JS phức tạp hơn)
